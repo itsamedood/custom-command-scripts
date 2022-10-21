@@ -4,17 +4,39 @@ from sys import argv
 
 HOME = getenv("HOME"); PATH = f"{HOME}/Documents/ZSH/custom_command_scripts/commands"
 existing_scripts = [es.name[:-3] for es in scandir(PATH) if es.name[-3:] == ".py"]
-flags = [a for a in argv if a[:2] == "--"]
+flags = [a[2:] for a in argv if a[:2] == "--"]
+
+def analyze_flags() -> dict[str, list[str]]:
+    flag_map: dict[str, list[str]] = {}
+
+    for flag in flags:
+        has_eqs = len([e for e in flag if e == "="]) > 0
+
+        match flag.split("=")[0] if has_eqs else flag:
+            case "exclude":
+                if not has_eqs: raise Exception("Flag 'exclude' requires argument.")
+                flag_map["exclude"] = flag.split("=")[1].split(",")
+
+            case "help": ...
+
+    return flag_map
 
 def get_files_to_compile() -> list[str]: return [f for f in argv if f in existing_scripts or f == "all"]
 
-def compile_script(_files: list[str]) -> list[str]:
-    for f in _files: print(f"\033[1;33mCompiling {f}.py...\033[0;0m"); system(f"cxfreeze --target-dir ./out/{f} --target-name {f} {PATH}/{f}.py")
-    return _files
+def compile_scripts(_files: list[str], _exclude: list[str]) -> None:
+    for f in _files:
+        if f not in _exclude:
+            print(f"\033[1;33mCompiling {f}.py...\033[0;0m")
+            system(f"cxfreeze --target-dir ./out/{f} --target-name {f} {PATH}/{f}.py")
+            print(f"\033[1;32mCompiled {f}.py!\033[0;0m")
 
+def run(_flags_map: dict[str, list[str]]) -> ...:
+    try: global exclude; exclude = _flags_map["exclude"]
+    except KeyError: exclude = []
 
-if __name__ == "__main__":
     files = get_files_to_compile()
-    if len(files) < 1: raise Exception("No files given to compile.")
+    if len(files) < 1: print("Files not found or none were given.")
+    compile_scripts(existing_scripts if "all" in files else files, exclude)
 
-    [print(f"\033[1;32mCompiled {s}.py!\033[0;0m") for s in compile_script(existing_scripts if "all" in files else files)]
+
+if __name__ == "__main__": run(analyze_flags())

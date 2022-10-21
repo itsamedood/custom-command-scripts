@@ -18,36 +18,20 @@ def calculateTilemapImageSize() -> list:
 	"""
 	while True:
 		w = input("How wide are the tiles? ")
-		try:
-			w = int(w)
-			break
-		except:
-			print("That's not a number!")
-			continue
+		try: w = int(w); break
+		except: print("That's not a number!"); continue
 	while True:
 		h = input("How high are the tiles? ")
-		try:
-			h = int(h)
-			break
-		except:
-			print("That's not a number!")
-			continue
+		try: h = int(h); break
+		except: print("That's not a number!"); continue
 	while True:
 		r = input("How many tiles per row? ")
-		try:
-			r = int(r)
-			break
-		except:
-			print("That's not a number!")
-			continue
+		try: r = int(r); break
+		except: print("That's not a number!"); continue
 	while True:
 		c = input("How many tiles in each column? ")
-		try:
-			c = int(c)
-			break
-		except:
-			print("That's not a number!")
-			continue
+		try: c = int(c); break
+		except: print("That's not a number!"); continue
 	iw = w * r
 	ih = h * c
 	return [iw, ih]

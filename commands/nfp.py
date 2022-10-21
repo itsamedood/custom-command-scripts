@@ -1,10 +1,11 @@
-from sys import argv
+from os import system
 
 
 def gen_project() -> None:  # alias nfp="cd ~/Documents/Games/HaxeFlixel && flixel tpl -n" # New Flixel Project.
-    flags = [f for f in argv if f[:2] == "--"]
-    params = [p for p in argv if p not in flags]
+    proj_name: str = ""
+    while not len(proj_name) > 0: proj_name = input("Project name: ")
 
-    print(f"FLAGS: {flags}\n", f"PARAMS: {params}\n")
+    system(f"cd ~/Documents/Games/HaxeFlixel && flixel tpl -n {proj_name} --ide vscode")
 
+# Do you get Deja Vu?
 if __name__ == "__main__": gen_project()

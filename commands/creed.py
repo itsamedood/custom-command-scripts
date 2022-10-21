@@ -1,5 +1,5 @@
 from datetime import datetime
-from sys import argv
+from sys import exit, argv
 from time import sleep
 
 def print_and_sleep(t: tuple[str, int]) -> None: print(f"• {t[0]}\n"); sleep(t[1])
@@ -31,7 +31,10 @@ if __name__ == "__main__":
         if len(argv) < 1: raise Exception("need path arg.")
 
         with open(argv[1], "r") as creedfile:
-            if datetime.today().weekday() == 2 and not len(creedfile.read()) > 0: exit(do_creed())
-            with open(argv[1], "w") as creedfile: creedfile.write("")
+            if datetime.today().weekday() == 2:
+                exit(do_creed()) if not len(creedfile.read()) > 0 else ...
+            else:
+                with open(argv[1], "w") as creedfile: creedfile.write("")
 
+    except IndexError: print("\n\033[31mYou may not run this program manually.\033[0m"); exit(1)
     except KeyboardInterrupt: print("\n\033[31mInterrupted. How dare you.\033[0m"); exit(1)
