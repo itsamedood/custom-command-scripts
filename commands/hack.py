@@ -1,14 +1,13 @@
+from os import system
 from random import randint
 
 
 def hack() -> None:
-    """hAcKz!!1!11!"""
-
+    """ hAcKz!!1!11! """
     while True:
-        data = ""
-
-        for _ in range(randint(5, 50)): data += "0" if randint(0, 100) % 2 == 0 else "1"
-        print(f"\033[0;32m{data}\033[0m")
+        print("\033[1;32m".join(['0' if i % 2 == 0 else '1' for i in [randint(0, 100) for _ in range(randint(5, 50))]]))
 
 
-if __name__ == "__main__": hack()
+if __name__ == "__main__":
+    try: hack()
+    except KeyboardInterrupt: print("\033[0;0;0m"); system("clear")

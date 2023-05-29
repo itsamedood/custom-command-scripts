@@ -1,4 +1,10 @@
+/dotfiles
+/logs
 /out
 /tests
-.creedfile
+.env
 *.DS_Store
+*.jpeg
+*.webp
+*.jpg
+*.png

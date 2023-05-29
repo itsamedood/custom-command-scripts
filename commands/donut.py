@@ -1,17 +1,11 @@
-# 🍩
 from math import sin, cos
 import os
 
 def donut():
-	"""
-	Mmmmm... Donut...
-	"""
+	""" Mmmmm... Donut... """
 
 	donutChars = ".,-~:;=!*#$@"
-	a = 0
-	b = 0
-	height = 24
-	width = 80
+	a, b, height, width = 0, 0, 24, 80
 	clear = "cls"
 
 	if os.name == "posix":
@@ -21,7 +15,7 @@ def donut():
 
 	try:
 		while True:
-			z = [0 for _ in range(4 * height * width)]
+			z: list[float] = [0 for _ in range(4 * height * width)]
 			screen = [' ' for _ in range(height * width)]
 			j = 0
 			while j < 6.28:
