@@ -53,7 +53,6 @@ def display_joke(joke_data: JokeData) -> None:
         print("\033[2m%s\033[0;0;0m" %joke_data.setup)
         print("\033[1;32m%s\033[0;0;0m" %joke_data.delivery)
 
-joke_data: JokeData = None
 
 try:
     res = get(url)

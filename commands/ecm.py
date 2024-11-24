@@ -2,9 +2,11 @@
 from os import system, getenv
 from os.path import exists
 
+
 HOME = getenv("HOME")
 PATH = "%s/Documents/ZSH/custom_command_scripts" %HOME
 DOTFILE = "%s/dotfiles/.ecm" %PATH
+
 
 def setup() -> None: ...
 

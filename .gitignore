@@ -1,9 +1,12 @@
+/archive
+/build
 /dotfiles
 /logs
 /out
 /tests
 .env
 *.DS_Store
+*.spec
 *.jpeg
 *.webp
 *.jpg

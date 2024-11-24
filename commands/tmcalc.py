@@ -49,4 +49,5 @@ def calculateTilemapImageSize() -> list:
 	ih = h * c
 	return [iw, ih]
 
+
 print(calculateTilemapImageSize())

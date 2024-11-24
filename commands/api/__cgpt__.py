@@ -6,6 +6,7 @@ from sys import exit
 
 load_dotenv("/Users/jr/Documents/ZSH/custom_command_scripts/.env")
 
+
 def request(prompt: str) -> str:
     api_key = environ["OPENAI_API_KEY"]
     model = "text-davinci-003"

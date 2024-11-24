@@ -1,5 +1,6 @@
 from datetime import date
 
+
 if __name__ == "__main__":
     DELTA = (date.today() - date(2022, 2, 1))
     years = DELTA.days / 365

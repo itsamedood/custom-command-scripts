@@ -1,6 +1,7 @@
 from math import sin, cos
 import os
 
+
 def donut():
 	""" Mmmmm... Donut... """
 
@@ -48,5 +49,6 @@ def donut():
 			a += 0.04
 			b += 0.02
 	except KeyboardInterrupt: print("\n\033[1;31mKeyboard interrupted :(\033[0m")
+
 
 donut()
